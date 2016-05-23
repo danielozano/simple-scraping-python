@@ -2,12 +2,18 @@
 from urllib import urlopen
 from bs4 import BeautifulSoup
 
-web = false
+web = 0
 while not web:
 	web = raw_input("¿URL a procesar?")
 
 # Obtener el HTML
-page = urlopen(web).read()
+try:
+	page = urlopen(web).read()
+	pass
+except Exception, e:
+	print ("Url inválida")
+	exit()
+	raise
 
 scraped = BeautifulSoup(page, "html5lib")
 
